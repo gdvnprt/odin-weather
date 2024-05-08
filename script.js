@@ -4,6 +4,16 @@ function searchWeather(location) {
         .then(function(response) {
             return response.json();
         })
+        // Filter out info I want here into new json object
+        // current.condition.text
+        // current.temp_f and temp_c
+        // current.feelslike_f and feelslike_c
+        // current.humidity
+        // current.precip_in and precip_mm
+        // current.wind_mph and kph
+        // current.wind_dir
+        // location.localtime
+        // current.last_updated
         .then(function(response) {
             console.log(response);
         })
@@ -11,3 +21,6 @@ function searchWeather(location) {
             alert("Error");
         })
 };
+
+// Do DOM stuff with JSON object
+// do a GIFY API pull with current.condition.text
