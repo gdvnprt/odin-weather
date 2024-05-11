@@ -4,44 +4,49 @@ function searchWeather(location) {
         .then(function(response) {
             return response.json();
         })
-        // Filter out info I want here into javascript object
-        // name, region, country
-        // current.condition.text
-        // current.temp_f and temp_c
-        // current.feelslike_f and feelslike_c
-        // current.humidity
-        // current.precip_in and precip_mm
-        // current.wind_mph and kph
-        // current.wind_dir
-        // location.localtime
-        // current.last_updated
+        .then(function(response) {
+            return filterWeather(response);
+        })
         .then(function(response) {
             console.log(response);
         })
         .catch(function(err) {
-            alert("Error");
+            alert(err);
         })
 };
 
 // Do DOM stuff with JSON object
 // do a GIFY API pull with current.condition.text
 
-// Filtered object:
-// location > name + region + country
-// time > localtime + lastupdated
-// condition text
-// temp > F or C > temp + feelslike
-// humidity
-// wind > dir + speed > mph + kph
-
 function filterWeather(jsonObject) {
-    //do things like parsing here
+    let place = jsonObject.location.name;
+    let region = jsonObject.location.region;
+    let country = jsonObject.location.country;
     let location = { place, region, country };
+
+    let local = jsonObject.location.localtime;
+    let lastUpdated = jsonObject.current.last_updated;
     let time = { local, lastUpdated };
+
+    let condition = jsonObject.current.condition.text;
+
+    let deg_f = jsonObject.current.temp_f
+    let feelslike_f = jsonObject.current.feelslike_f;
     let faren = { deg_f, feelslike_f };
+
+    let deg_c = jsonObject.current.temp_c;
+    let feelslike_c = jsonObject.current.feelslike_c;
     let cels = { deg_c, feelslike_c };
+
     let temp = { faren, cels };
+
+    let humidity = jsonObject.current.humidity;
+
+    let mph = jsonObject.current.wind_mph;
+    let kph = jsonObject.current.wind_kph;
     let windSpeed = { mph, kph };
-    let wind = { direction, windSpeed }
+    let direction = jsonObject.current.wind_dir;
+    let wind = { direction, windSpeed };
+
     return { location, time, condition, temp, humidity, wind };
 };
