@@ -1,3 +1,15 @@
+//DOM manipulation here
+const weatherForm = document.querySelector('#form');
+
+weatherForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(weatherForm);
+    let searchInput = Object.fromEntries(fd);
+    searchInput = searchInput.search.replace(/\s+/g, '-').toLowerCase();
+    searchWeather(searchInput);
+});
+
+//base search function
 function searchWeather(location) {
     let searchPull = 'https://api.weatherapi.com/v1/current.json?key=04869068a4cf4ff4b4d20647240305&q=' + location
     fetch(searchPull, {mode: 'cors'})
@@ -15,9 +27,8 @@ function searchWeather(location) {
         })
 };
 
-// Do DOM stuff with JSON object
-// do a GIFY API pull with current.condition.text
 
+//filter the returned object from weather API
 function filterWeather(jsonObject) {
     let place = jsonObject.location.name;
     let region = jsonObject.location.region;
