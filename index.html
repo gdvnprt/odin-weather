@@ -8,13 +8,48 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <div id="form-div">
-        <h1>Search the weather!</h1>
-        <form id="form">
-            <label for="search">Location:</label>
-            <input type="text" id="search" name="search">
-            <button type="submit">Search!</button>
-        </form>
+    <div>
+        <div id="form-div">
+            <h1>Search the weather!</h1>
+            <form id="form">
+                <div id="search">
+                    <label for="search">Location:</label>
+                    <input type="text" id="search" name="search">
+                </div>
+                <div id="units">
+                    <p>Unit Type:</p>
+                    <input type="radio" id="imperial" name="unit" value="imperial">
+                    <label for="imperial">Imperial</label>
+                    <input type="radio" id="metric" name="unit" value="metric">
+                    <label for=""metric>Metric</label>
+                </div>
+                <button type="submit">Search!</button>
+            </form>
+        </div>
+
+        <div id="weather-container">
+            <div id="location">
+
+            </div>
+            <div id="time">
+
+            </div>
+            <div id="temp">
+
+            </div>
+            <div id="condition">
+
+            </div>
+            <div id="wind" class="small-info">
+
+            </div>
+            <div id="humidity" class="small-info">
+
+            </div>
+            <div id="gif">
+
+            </div>
+        </div>
     </div>
 </body>
 </html>
