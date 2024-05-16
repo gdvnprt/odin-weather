@@ -11,7 +11,7 @@ weatherForm.addEventListener('submit', (e) => {
 
 //base search function
 function searchWeather(location) {
-    let searchPull = 'https://api.weatherapi.com/v1/current.json?key=04869068a4cf4ff4b4d20647240305&q=' + location
+    let searchPull = 'https://api.weatherapi.com/v1/current.json?key=04869068a4cf4ff4b4d20647240305&q=' + location;
     fetch(searchPull, {mode: 'cors'})
         .then(function(response) {
             return response.json();
@@ -60,4 +60,45 @@ function filterWeather(jsonObject) {
     let wind = { direction, windSpeed };
 
     return { location, time, condition, temp, humidity, wind };
+};
+
+const displayWeather = (object) => {
+
+    const placeText = document.querySelector('#place-text');
+    placeText.innerHTML = object.location.place;
+
+    const otherLocText = document.querySelector('#small-location-text');
+    otherLocText.innerHTML = object.location.region + ", " + object.location.country;
+
+    const timeText = document.querySelector('#local-time-text');
+    timeText.innerHTML = object.time.local;
+
+    const updateText = document.querySelector('#last-updated-text');
+    updateText.innerHTML = object.time.lastUpdated;
+
+    //unit toggle here
+    const checkMetric = document.querySelector('#metric')
+    //continuing
+    const tempText = document.querySelector('#temp-text');
+    if (checkMetric.checked) {
+        tempText.innerHTML = object.temp.cels;
+    } else {
+        tempText.innerHTML = object.temp.faren;
+    };
+    
+    const conditionText = document.querySelector('#condition-text');
+    conditionText.innerHTML = object.condition;
+
+    const windSpeedText = document.querySelector("#wind-speed-text");
+    if (checkMetric.checked) {
+        windSpeedText.innerHTML = object.wind.windSpeed.kph;
+    } else {
+        windSpeedText.innerHTML = object.wind.windSpeed.mph;
+    };
+
+    const windDirText = document.querySelector('#wind-direction-text');
+    windDirText.innerHTML = object.wind.direction;
+
+    const humidityText = document.querySelector('#humidity-text');
+    humidityText.innerHTML = object.humidity + "%";
 };
