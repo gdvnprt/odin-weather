@@ -20,7 +20,7 @@ function searchWeather(location) {
             return filterWeather(response);
         })
         .then(function(response) {
-            console.log(response);
+            displayWeather(response);
         })
         .catch(function(err) {
             alert(err);
@@ -101,4 +101,24 @@ const displayWeather = (object) => {
 
     const humidityText = document.querySelector('#humidity-text');
     humidityText.innerHTML = object.humidity + "%";
+
+    const gifDiv = document.querySelector('#gif');
+    while (gifDiv.firstChild) {
+        gifDiv.removeChild(gifDiv.firstChild);
+    };
+    const newGif = document.createElement('img');
+    let gifSrc = gifSearch(object.condition);
+    newGif.src = gifSrc;
 };
+
+const gifSearch = (string) {
+    gif = string.replace(/\s+/g, '-').toLowerCase();
+    let gifTerm = 'https://api.giphy.com/v1/gifs/translate?api_key=RECjs3jIRTKUzZOoPwnj6QKVtble9rpU&s=' + gif;
+    fetch(gifTerm, {mode: 'cors'})
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response) {
+            return response.data.images.original.url;
+        })
+}
