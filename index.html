@@ -12,17 +12,16 @@
         <div id="form-div">
             <h1>Search the weather!</h1>
             <form id="form">
-                <div id="search">
+                <div id="search-div">
                     <label for="search">Location:</label>
                     <input type="text" id="search" name="search">
                 </div>
                 <div id="units">
-                    <!--Change to a toggle?  Styled Checkbox-->
+                    <!--Use CSS to style checkbox into toggle switch-->
                     <p>Unit Type:</p>
-                    <input type="radio" id="imperial" name="unit" value="imperial">
-                    <label for="imperial">Imperial</label>
-                    <input type="radio" id="metric" name="unit" value="metric">
-                    <label for=""metric>Metric</label>
+                    <p>Imperial</p>
+                    <input type="checkbox" id="metric" name="metric">
+                    <label for="metric">Metric</label>
                 </div>
                 <button type="submit">Search!</button>
             </form>
@@ -50,7 +49,7 @@
             <div id="humidity" class="small-info">
                 <p id="humidity-text"></p>
             </div>
-            <div id="gif">
+            <div id="gif-div">
 
             </div>
         </div>

@@ -60,6 +60,7 @@ function filterWeather(jsonObject) {
     let wind = { direction, windSpeed };
 
     return { location, time, condition, temp, humidity, wind };
+    
 };
 
 const displayWeather = (object) => {
@@ -81,9 +82,9 @@ const displayWeather = (object) => {
     //continuing
     const tempText = document.querySelector('#temp-text');
     if (checkMetric.checked) {
-        tempText.innerHTML = object.temp.cels;
+        tempText.innerHTML = object.temp.cels.deg_c;
     } else {
-        tempText.innerHTML = object.temp.faren;
+        tempText.innerHTML = object.temp.faren.deg_f;
     };
     
     const conditionText = document.querySelector('#condition-text');
@@ -102,18 +103,19 @@ const displayWeather = (object) => {
     const humidityText = document.querySelector('#humidity-text');
     humidityText.innerHTML = object.humidity + "%";
 
-    const gifDiv = document.querySelector('#gif');
+    const gifDiv = document.querySelector('#gif-div');
     while (gifDiv.firstChild) {
         gifDiv.removeChild(gifDiv.firstChild);
     };
     const newGif = document.createElement('img');
     let gifSrc = gifSearch(object.condition);
     newGif.src = gifSrc;
+    gifDiv.appendChild(newGif);
 };
 
-const gifSearch = (string) {
-    gif = string.replace(/\s+/g, '-').toLowerCase();
-    let gifTerm = 'https://api.giphy.com/v1/gifs/translate?api_key=RECjs3jIRTKUzZOoPwnj6QKVtble9rpU&s=' + gif;
+const gifSearch = (string) => { 
+    gifStr = string.replace(/\s+/g, '-').toLowerCase();
+    let gifTerm = 'https://api.giphy.com/v1/gifs/translate?api_key=RECjs3jIRTKUzZOoPwnj6QKVtble9rpU&s=' + gifStr;
     fetch(gifTerm, {mode: 'cors'})
         .then(function(response) {
             return response.json();
