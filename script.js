@@ -113,8 +113,8 @@ const displayWeather = (object) => {
     gifDiv.appendChild(newGif);
 };
 
-const gifSearch = (string) => { 
-    gifStr = string.replace(/\s+/g, '-').toLowerCase();
+const gifSearch = (searchStr) => { 
+    gifStr = searchStr.replace(/\s+/g, '-').toLowerCase();
     let gifTerm = 'https://api.giphy.com/v1/gifs/translate?api_key=RECjs3jIRTKUzZOoPwnj6QKVtble9rpU&s=' + gifStr;
     fetch(gifTerm, {mode: 'cors'})
         .then(function(response) {
@@ -123,4 +123,7 @@ const gifSearch = (string) => {
         .then(function(response) {
             return response.data.images.original.url;
         })
+        .catch(function(err) {
+            console.log(err);
+        });
 }
