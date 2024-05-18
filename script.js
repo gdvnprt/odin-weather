@@ -1,5 +1,5 @@
 //DOM manipulation here
-const weatherForm = document.querySelector('#form');
+const weatherForm = document.querySelector('#weather-form');
 
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -107,13 +107,12 @@ const displayWeather = (object) => {
     while (gifDiv.firstChild) {
         gifDiv.removeChild(gifDiv.firstChild);
     };
-    const newGif = document.createElement('img');
-    let gifSrc = gifSearch(object.condition);
-    newGif.src = gifSrc;
-    gifDiv.appendChild(newGif);
+    gifSearch(object);
 };
 
-const gifSearch = (searchStr) => { 
+function gifSearch(object) { 
+    const newGif = document.createElement('img');
+    let searchStr = object.condition;
     gifStr = searchStr.replace(/\s+/g, '-').toLowerCase();
     let gifTerm = 'https://api.giphy.com/v1/gifs/translate?api_key=RECjs3jIRTKUzZOoPwnj6QKVtble9rpU&s=' + gifStr;
     fetch(gifTerm, {mode: 'cors'})
@@ -123,7 +122,11 @@ const gifSearch = (searchStr) => {
         .then(function(response) {
             return response.data.images.original.url;
         })
+        .then(function(response) {
+            newGif.src = response.data.images.original.url;
+            gifDiv.appendChild(newGif);
+        })
         .catch(function(err) {
             console.log(err);
         });
-}
+};
