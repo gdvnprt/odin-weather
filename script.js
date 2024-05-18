@@ -103,30 +103,26 @@ const displayWeather = (object) => {
     const humidityText = document.querySelector('#humidity-text');
     humidityText.innerHTML = object.humidity + "%";
 
+    gifSearch(object.condition);
+};
+
+function gifSearch(string) {
     const gifDiv = document.querySelector('#gif-div');
     while (gifDiv.firstChild) {
         gifDiv.removeChild(gifDiv.firstChild);
     };
-    gifSearch(object);
-};
-
-function gifSearch(object) { 
-    const newGif = document.createElement('img');
-    let searchStr = object.condition;
-    gifStr = searchStr.replace(/\s+/g, '-').toLowerCase();
-    let gifTerm = 'https://api.giphy.com/v1/gifs/translate?api_key=RECjs3jIRTKUzZOoPwnj6QKVtble9rpU&s=' + gifStr;
-    fetch(gifTerm, {mode: 'cors'})
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(response) {
-            return response.data.images.original.url;
-        })
-        .then(function(response) {
-            newGif.src = response.data.images.original.url;
-            gifDiv.appendChild(newGif);
-        })
-        .catch(function(err) {
-            console.log(err);
-        });
+    const gif = document.createElement('img')
+    let searchValue = 'https://api.giphy.com/v1/gifs/translate?api_key=RECjs3jIRTKUzZOoPwnj6QKVtble9rpU&s=' + string;
+    fetch(searchValue, {mode: 'cors'})
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(response) {
+        console.log(response);
+        gif.src = response.data.images.original.url;
+        gifDiv.appendChild(gif);
+    })
+    .catch(function(err) {
+        alert(err);
+    })
 };
