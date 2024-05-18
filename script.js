@@ -82,9 +82,9 @@ const displayWeather = (object) => {
     //continuing
     const tempText = document.querySelector('#temp-text');
     if (checkMetric.checked) {
-        tempText.innerHTML = object.temp.cels.deg_c;
+        tempText.innerHTML = object.temp.cels.deg_c + "°";
     } else {
-        tempText.innerHTML = object.temp.faren.deg_f;
+        tempText.innerHTML = object.temp.faren.deg_f + "°";
     };
     
     const conditionText = document.querySelector('#condition-text');
@@ -92,9 +92,9 @@ const displayWeather = (object) => {
 
     const windSpeedText = document.querySelector("#wind-speed-text");
     if (checkMetric.checked) {
-        windSpeedText.innerHTML = object.wind.windSpeed.kph;
+        windSpeedText.innerHTML = object.wind.windSpeed.kph + "kph";
     } else {
-        windSpeedText.innerHTML = object.wind.windSpeed.mph;
+        windSpeedText.innerHTML = object.wind.windSpeed.mph + "mph";
     };
 
     const windDirText = document.querySelector('#wind-direction-text');
