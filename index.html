@@ -8,10 +8,10 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <div>
+    <div id="container">
         <div id="form-div">
             <h1>Search the weather!</h1>
-            <form id="form">
+            <form id="weather-form">
                 <div id="search-div">
                     <label for="search">Location:</label>
                     <input type="text" id="search" name="search">
@@ -19,9 +19,12 @@
                 <div id="units">
                     <!--Use CSS to style checkbox into toggle switch-->
                     <p>Unit Type:</p>
-                    <p>Imperial</p>
-                    <input type="checkbox" id="metric" name="metric">
-                    <label for="metric">Metric</label>
+                    <div id="toggle-div">
+                        <p>Imperial</p>
+                        <input type="checkbox" id="metric" name="metric" class="toggle">
+                        <label for="metric"></label>
+                    <p>Metric</p>
+                    </div>
                 </div>
                 <button type="submit">Search!</button>
             </form>
