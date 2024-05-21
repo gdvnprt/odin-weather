@@ -72,10 +72,10 @@ const displayWeather = (object) => {
     otherLocText.innerHTML = object.location.region + ", " + object.location.country;
 
     const timeText = document.querySelector('#local-time-text');
-    timeText.innerHTML = object.time.local;
+    timeText.innerHTML = "Currently " + object.time.local;
 
     const updateText = document.querySelector('#last-updated-text');
-    updateText.innerHTML = object.time.lastUpdated;
+    updateText.innerHTML = "Last updated: " + object.time.lastUpdated;
 
     //unit toggle here
     const checkMetric = document.querySelector('#metric')

@@ -120,3 +120,43 @@ input[type=checkbox]{
 #units label:active:after {
 	width: 33px;
 }
+
+/*Weather display*/
+
+#weather-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#location, #time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+#place-text {
+    font-size: 1.8rem;
+}
+
+#small-info {
+    font-size: .6rem;
+}
+
+#temp-text {
+    font-size: 3rem;
+}
+
+#condition-text {
+    font-size: 1.5rem;
+}
+
+#wind {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
